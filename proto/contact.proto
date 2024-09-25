@@ -1,0 +1,35 @@
+syntax = "proto3";
+package contact.services.v1;
+
+import "google/protobuf/wrappers.proto";
+
+
+service ContactService {
+  rpc Add (AddRequest) returns (AddResponse);
+  rpc GetAll (GetAllRequest) returns (GetAllResponse);
+}
+
+message AddRequest {
+  string name = 1;
+}
+
+message AddResponse {
+  bool is_success = 1;
+  google.protobuf.StringValue message = 2;
+}
+
+message GetAllRequest {
+  google.protobuf.StringValue name = 3;
+}
+
+message GetAllResponse {
+  bool is_success = 1;
+  google.protobuf.StringValue message = 2;
+  repeated Contact data = 3;
+}
+
+message Contact {
+  int64 id = 1 ;
+  string name = 2;
+}
+
